@@ -4,28 +4,28 @@ using System.IO;
 using System.Security.Cryptography;
 using Foopipes.Core.Extensions;
 
-Task("aes.decryptstring").BinaryAsync(async (context, binary, ct)=>
+Task("aes.decryptstring").Binary(async (context, binary, ct)=>
 {
-    var key = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("key", true));
-    var iv = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("iv", true));
+    var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
+    var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
     var decryptedData = DecryptStringFromBytes(binary.Data, key, iv);
-    return new ProcessJsonResult(JObject.FromObject(new { value=decryptedData }));
+    return JObject.FromObject(new { value=decryptedData });
 });
 
-Task("aes.decryptjson").BinaryAsync(async (context, binary, ct)=>
+Task("aes.decryptjson").Binary(async (context, binary, ct)=>
 {
-    var key = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("key", true));
-    var iv = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("iv", true));
+    var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
+    var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
     var decryptedData = DecryptJsonFromBytes(binary.Data, key, iv);
-    return new ProcessJsonResult(decryptedData);
+    return decryptedData;
 });
 
-Task("aes.decryptbinary").BinaryAsync(async (context, binary, ct)=>
+Task("aes.decryptbinary").Binary(async (context, binary, ct)=>
 {
-    var key = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("key", true));
-    var iv = Convert.FromBase64String(await context.GetExpandedConfigValueAsync("iv", true));
+    var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
+    var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
     var decryptedData = DecryptBinaryFromBytes(binary.Data, key, iv);
-    return new ProcessBinaryResult(decryptedData);
+    return decryptedData;
 });
 
 string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
