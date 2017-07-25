@@ -1,4 +1,4 @@
-#reference System.Security.Cryptography.Csp
+#r "System.Security.Cryptography.Csp"
 
 using System.IO;
 using System.Security.Cryptography;
