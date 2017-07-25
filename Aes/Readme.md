@@ -12,7 +12,7 @@ AES is a subset of the Rijndael cipher.
 ```
 plugins: 
 addins:
-  - url: "https://raw.githubusercontent.com/AreteraAB/Foopipes.Addins/master/Aes/aes.cs"
+  - url: "https://raw.githubusercontent.com/AreteraAB/Foopipes.Addins/master/Aes/aes.csx"
 services: 
   udp: 
     type: udplistener

@@ -6,7 +6,7 @@ Send email with Mailgun
 
 ```
 addins:
-  - url: "https://raw.githubusercontent.com/AreteraAB/Foopipes.Addins/master/Mailgun/mailgun.cs"
+  - url: "https://raw.githubusercontent.com/AreteraAB/Foopipes.Addins/master/Mailgun/mailgun.csx"
 
 services:
   mailgun:
