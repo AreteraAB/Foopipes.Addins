@@ -29,7 +29,7 @@ Task("mailgun.send").Json(async (context, json, ct)=>
 			{"user", "api:" + service.ApiKey}
 		};
 
-		var r = await context.RunJsonTaskAsync("http", new JsonData(data), config, ct);
+		var r = await context.RunJsonTask("http", new JsonData(data), config, ct);
 		return json.Data; 
 	});
 
