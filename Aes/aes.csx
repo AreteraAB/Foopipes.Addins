@@ -4,6 +4,8 @@ using System.IO;
 using System.Security.Cryptography;
 using Foopipes.Core.Extensions;
 
+var _aes = Aes.Create();
+
 Task("aes.decryptstring").Binary(async (context, binary, ct)=>
 {
     var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
@@ -30,13 +32,8 @@ Task("aes.decryptbinary").Binary(async (context, binary, ct)=>
 
 string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
 {
-    using (var aes = Aes.Create())
+    using (var decryptor = _aes.CreateDecryptor(key, iv))
     {
-        aes.Key = key;
-        aes.IV = iv;
-
-        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
         using (var msDecrypt = new MemoryStream(cipherText))
         {
             using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
@@ -52,13 +49,8 @@ string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
 
 JObject[] DecryptJsonFromBytes(byte[] cipherText, byte[] key, byte[] iv)
 {
-    using (var aes = Aes.Create())
+    using (var decryptor = _aes.CreateDecryptor(key, iv))
     {
-        aes.Key = key;
-        aes.IV = iv;
-
-        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
         using (var msDecrypt = new MemoryStream(cipherText))
         {
             using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
@@ -71,13 +63,8 @@ JObject[] DecryptJsonFromBytes(byte[] cipherText, byte[] key, byte[] iv)
 
 byte[] DecryptBinaryFromBytes(byte[] cipherText, byte[] key, byte[] iv)
 {
-    using (var aes = Aes.Create())
+    using (var decryptor = _aes.CreateDecryptor(key, iv))
     {
-        aes.Key = key;
-        aes.IV = iv;
-
-        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
         using (var msDecrypt = new MemoryStream(cipherText))
         {
             using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
