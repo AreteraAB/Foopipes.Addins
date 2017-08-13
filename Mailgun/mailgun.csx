@@ -20,7 +20,7 @@ class MailgunService : ServiceBase
 
 Service.Register("mailgun", typeof(MailgunService));
 
-Task("mailgun.send").Json(async (context, json, ct)=>
+PipelineTask("mailgun.send").Json(async (context, json, ct)=>
 	{
 		var service = await context.GetService<MailgunService>(defaultName: "mailgun");
 		service.VerifyArgs();

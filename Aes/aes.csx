@@ -6,7 +6,7 @@ using Foopipes.Core.Extensions;
 
 var _aes = Aes.Create();
 
-Task("aes.decryptstring").Binary(async (context, binary, ct)=>
+PipelineTask("aes.decryptstring").Binary(async (context, binary, ct)=>
 {
     var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
     var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
@@ -14,7 +14,7 @@ Task("aes.decryptstring").Binary(async (context, binary, ct)=>
     return JObject.FromObject(new { value=decryptedData });
 });
 
-Task("aes.decryptjson").Binary(async (context, binary, ct)=>
+PipelineTask("aes.decryptjson").Binary(async (context, binary, ct)=>
 {
     var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
     var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
@@ -22,7 +22,7 @@ Task("aes.decryptjson").Binary(async (context, binary, ct)=>
     return decryptedData;
 });
 
-Task("aes.decryptbinary").Binary(async (context, binary, ct)=>
+PipelineTask("aes.decryptbinary").Binary(async (context, binary, ct)=>
 {
     var key = Convert.FromBase64String(await context.GetExpandedConfigValue("key", true));
     var iv = Convert.FromBase64String(await context.GetExpandedConfigValue("iv", true));
