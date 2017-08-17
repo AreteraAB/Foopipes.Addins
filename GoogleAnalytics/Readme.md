@@ -34,10 +34,16 @@ See https://developers.google.com/analytics/devguides/collection/protocol/v1/dev
 ### ga.event ###
 
 ```service``` - Registered googleAnalytics service. Defaults to ```ga```.
+
 ```clientId``` - Anonymous Client ID. (cid)
+
 ```eventCategory``` - Event Category. Required. (ec)
+
 ```eventAction``` - Event Action. Required. (ea)
+
 ```eventLabel``` - Event label. (el)
+
 ```eventValue``` - Event value. (ev)
+
 ```userIP``` - IP address override. (uip)
 
