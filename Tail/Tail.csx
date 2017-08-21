@@ -83,11 +83,11 @@ class TailService : ServiceBase, IObservableService, IRunnableService
                             filename = Filename,
                             position = filestream.Position,
                             length = filestream.Length,
-                            encoding = reader.CurrentEncoding.ToString(),
+                            encoding = reader.CurrentEncoding.WebName,
                             endOfStream = reader.EndOfStream
                         });
 
-                        _subject.OnNext(new ServiceEvent(this, metadata, new[] { new BinaryData(Encoding.UTF8.GetBytes(line)) }));
+                        _subject.OnNext(new ServiceEvent(this, metadata, new[] { BinaryData.FromString(line) }));
                     }
 
                     //update the last max offset
