@@ -11,7 +11,7 @@ PipelineTask("parseDateTime.parseExact")
         var culture = context.GetConfigValue("culture", false);
         var kind = context.GetAndConvertConfigValue<DateTimeKind?>("kind");
 
-        var ci = culture != null ? CultureInfo.GetCultureInfo(culture) : CultureInfo.InvariantCulture;
+        var ci = culture != null ? new CultureInfo(culture) : CultureInfo.InvariantCulture;
         var parsed = DateTime.ParseExact(val, pattern, ci);
         if (kind.HasValue)
             parsed = DateTime.SpecifyKind(parsed, kind.Value);
