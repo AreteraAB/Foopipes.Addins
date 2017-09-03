@@ -3,14 +3,13 @@
 Parse DateTime values
 
 ## Tasks ##
- * parseDateTime.parseExact - Parse DateTime based on a pattern
-  
-  Arguments:
+ * parseDateTime.parseExact - Parse DateTime based on a pattern  
+   Arguments:
     * path    - JsonPath to the _target_ field (default value)
     * value   - Binding expression to the _source_ value
     * pattern - Date pattern
     * kind    - "Utc" or "Local" (optional)
-	* culture - Name of culture to use (optional)
+    * culture - Name of culture to use (optional)
 	
 	
 ## Example Usage ##
