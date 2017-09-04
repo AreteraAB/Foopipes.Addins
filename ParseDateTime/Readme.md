@@ -10,8 +10,8 @@ Parse DateTime values
     * pattern - Date pattern
     * kind    - "Utc" or "Local" (optional)
     * culture - Name of culture to use (optional)
-	
-	
+    * offset  - Time offset from Utc (optional) "hh:mm:ss"
+
 ## Example Usage ##
 
 ```
@@ -31,7 +31,7 @@ pipelines:
     do:
       - log 
       - regexp.matches_groups: (?'datetime'\S+ \S+) \[(?'threadId'\S+)\] (?'level'\S+) (?'logger'\S+) \[(?'context'\S+)\] - (?'message'.*)
-      - { parseDateTime.parseExact: "datetime", value: "#{datetime}", pattern: "yyyy-MM-dd HH:mm:ss,fff", kind: Local }
+      - { parseDateTime.parseExact: "datetime", value: "#{datetime}", pattern: "yyyy-MM-dd HH:mm:ss,fff", offset: "02:00:00" }
     to:
       - log
 ```
